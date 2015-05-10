@@ -1,0 +1,9 @@
+{% if list_of_entries %}
+    <ul>
+    {% for entry in list_of_entries %}
+    <li><a href="/booklist/{{ entry.id }}/">{{ entry.title }} - {{ entry.author }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No entries are available.</p>
+{% endif %}
