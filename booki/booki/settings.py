@@ -20,8 +20,8 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '8_xp%8occd1zxxhx4y^vrez!rmw60#07v+v8bwv@z=(1z07siq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 TEMPLATE_DEBUG = True
 
