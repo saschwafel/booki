@@ -11,6 +11,7 @@ from django.contrib import admin
 # )
 
 urlpatterns = [
-    url(r'^booklist/', include('booklist.urls')),
+    url(r'^$', 'booklist.views.index'),
+    url(r'^booklist/', include('booklist.urls', namespace="booklist")),
     url(r'^admin/', include(admin.site.urls)),
 ]
