@@ -1,7 +1,7 @@
 {% if list_of_entries %}
     <ul>
     {% for entry in list_of_entries %}
-    <li><a href="/booklist/{{ entry.id }}/">{{ entry.title }} - {{ entry.author }}</a></li>
+    <li><a href="{% url 'detail' entry.id %}">{{ entry.title }} - {{ entry.author }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
