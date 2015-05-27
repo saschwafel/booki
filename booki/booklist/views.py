@@ -7,7 +7,14 @@ import requests
 from bs4 import BeautifulSoup
 
 # Create your views here.
+with open('/home/schuyler/Class/booki/booki/booklist/api_info.txt') as f:
+    api_info = f.readlines()
 
+gr_api_key = str(api_info[1]).strip()
+
+print gr_api_key
+# gr_api_key = "CA3fN2yi9oAZzMEDigwEAQ"
+gr_secret = "nCgo7zG7nv6UbauQapkJDQsbTJ3kqU7jbBSTy8LnIg"
 
 def index(request):
     # list_of_entries = Book_Entry.objects.order_by('date_added')
