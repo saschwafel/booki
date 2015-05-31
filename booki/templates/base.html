@@ -96,6 +96,17 @@
         <div class="col-md-4">
 
         </div>
+        
+        <form action="/new-entry/" method="POST">
+
+        {% csrf_token %}
+
+        {{ form_new }}
+
+            <input type="submit" value="New Entry" />
+
+        </form>
+
       </div>
 
       <hr>

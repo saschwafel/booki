@@ -1,7 +1,8 @@
 from .models import Book_Entry
 from django.http import Http404
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect
 from django.template import RequestContext, loader
+from .forms import EntryForm
 import urllib
 import requests
 from bs4 import BeautifulSoup
@@ -57,3 +58,22 @@ def detail(request, book_entry_id):
     return HttpResponse(response % book_entry_id)
 
 
+def new_entry(request):
+
+    form = EntryForm()
+
+    if request.method == 'POST':
+
+        form = EntryForm(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+
+            return HttpResponseRedirect('/')
+
+        else:
+
+            form = EntryForm()
+
+    return render(request, "base.html", {'form_new': form})

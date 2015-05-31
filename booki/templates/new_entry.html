@@ -1,0 +1,13 @@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+
+    <form  action="{% url 'new_entry' %}" method="POST">
+
+    {% csrf_token %}
+
+    {{ form_new }}
+
+    <input type="submit" value="Submit" />
+
+    </form>

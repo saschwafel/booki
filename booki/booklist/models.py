@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 
@@ -12,6 +13,12 @@ class Book_Entry(models.Model):
 
     def __str__(self):
         return str(self.title)+' - '+ str(self.author)
+
+class EntryForm(ModelForm):
+    class Meta:
+        model = Book_Entry
+        fields = ['title', 'author', 'date_added', 'date_started', 'date_finished']
+
 
 #class Booklist(models.Model):
 #    pass
