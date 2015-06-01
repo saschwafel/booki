@@ -97,5 +97,32 @@ def detail(request, book_entry_id):
 
         Http404("Page not found :'(")
 
-    return HttpResponse(response % book_entry_id)
+    # return HttpResponse(response % book_entry_id)
 
+
+def edit(request, book_entry_id):
+    try:
+        entry = get_object_or_404(Book_Entry, pk=book_entry_id)
+
+        form = EntryForm(instance=Book_Entry.objects.get(book_entry_id))
+
+        instance = entry
+
+        if request.method == 'POST':
+
+            form = EntryForm(request.POST, instance=instance)
+
+            if form.is_valid():
+
+                post = form.save(commit=False)
+                post.save()
+
+                return HttpResponseRedirect('/')
+            else:
+                form = EntryForm(instance=instance)
+
+    except Book_Entry.DoesNotExist:
+
+        Http404("Page not found :'(")
+
+    return render(request, 'booklist/detail.html', {'book_entry' : entry, 'cover' : cover, 'api_url' : api_url, 'form_new': form})

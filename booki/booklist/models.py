@@ -11,6 +11,8 @@ class Book_Entry(models.Model):
     date_started = models.DateField('Date Started', blank=True, null=True)
     date_finished = models.DateField('Date Finished', blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = 'Book Entries'
     def __str__(self):
         return str(self.title)+' - '+ str(self.author)
 
