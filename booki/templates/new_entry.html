@@ -6,7 +6,7 @@
 
     {% csrf_token %}
 
-    {{ form_new }}
+    {{ form_new.as_table }}
 
     <input type="submit" value="Submit" />
 

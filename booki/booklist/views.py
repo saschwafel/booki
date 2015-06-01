@@ -24,9 +24,27 @@ def index(request):
     try:
 
 
+        form = EntryForm()
+
+        if request.method == 'POST':
+
+            form = EntryForm(request.POST)
+
+            if form.is_valid():
+
+                post = form.save(commit=False)
+                post.save()
+
+                return HttpResponseRedirect('/')
+
+            else:
+
+                form = EntryForm()
+
         list_of_entries = Book_Entry.objects.order_by('date_added')
         template = loader.get_template('booklist/index.html')
-        context = RequestContext(request, { 'list_of_entries': list_of_entries, })
+
+        context = RequestContext(request, { 'list_of_entries': list_of_entries, 'form_new': form })
 
     except Book_Entry.DoesNotExist:
 
@@ -46,7 +64,13 @@ def detail(request, book_entry_id):
         gr_returned_html = requests.get(api_url)
         soup = BeautifulSoup(gr_returned_html.text)
 
-        cover = soup.find("image_url").text
+        try:
+
+            cover = soup.find("image_url").text
+
+        except AttributeError:
+
+            cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
 
         return render(request, 'booklist/detail.html', {'book_entry' : entry, 'cover' : cover, 'api_url' : api_url })
         # response = "You are looking at Entry #%s!" 
@@ -57,23 +81,3 @@ def detail(request, book_entry_id):
 
     return HttpResponse(response % book_entry_id)
 
-
-def new_entry(request):
-
-    form = EntryForm()
-
-    if request.method == 'POST':
-
-        form = EntryForm(request.POST)
-
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-
-            return HttpResponseRedirect('/')
-
-        else:
-
-            form = EntryForm()
-
-    return render(request, "base.html", {'form_new': form})

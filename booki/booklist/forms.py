@@ -8,7 +8,6 @@ class EntryForm(ModelForm):
         fields = ['title', 'author', 'date_added', 'date_started', 'date_finished']
         # fields = ['title', 'author']
         # fields =  ('__all__') 
-        exclude = ['user',]
         widgets = {
             #Use localization and bootstrap 3
             'datetime': DateTimeWidget(attrs={'id':"date_added"}, usel10n = True, bootstrap_version=3)

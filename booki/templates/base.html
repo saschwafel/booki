@@ -97,11 +97,12 @@
 
         </div>
         
-        <form action="/new-entry/" method="POST">
+        <!--<form action="/new-entry/" method="POST">-->
+        <form method="POST">
 
         {% csrf_token %}
 
-        {{ form_new }}
+        {{ form_new.as_table }}
 
             <input type="submit" value="New Entry" />
 
