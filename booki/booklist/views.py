@@ -13,7 +13,6 @@ with open('/home/schuyler/Class/booki/booki/booklist/api_info.txt') as f:
 
 gr_api_key = str(api_info[1]).strip()
 
-print gr_api_key
 # gr_api_key = "CA3fN2yi9oAZzMEDigwEAQ"
 gr_secret = "nCgo7zG7nv6UbauQapkJDQsbTJ3kqU7jbBSTy8LnIg"
 
@@ -66,13 +65,32 @@ def detail(request, book_entry_id):
 
         try:
 
-            cover = soup.find("image_url").text
+            cover = soup.findAll("image_url")
+
+            cover = cover[0].text
 
         except AttributeError:
 
             cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
 
-        return render(request, 'booklist/detail.html', {'book_entry' : entry, 'cover' : cover, 'api_url' : api_url })
+        form = EntryForm()
+
+        if request.method == 'POST':
+
+            form = EntryForm(request.POST)
+
+            if form.is_valid():
+
+                post = form.save(commit=False)
+                post.save()
+
+                return HttpResponseRedirect('/')
+
+            else:
+
+                form = EntryForm()
+
+        return render(request, 'booklist/detail.html', {'book_entry' : entry, 'cover' : cover, 'api_url' : api_url, 'form_new': form})
         # response = "You are looking at Entry #%s!" 
 
     except Book_Entry.DoesNotExist:

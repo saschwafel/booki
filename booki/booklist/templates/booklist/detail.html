@@ -13,6 +13,18 @@
 <h1>
     {{ book_entry.title }}
 </h1>
+
+    <h3>
+        <h4>
+            Added to list on {{ book_entry.date_added }}
+        </h4>
+        <h4>
+            Started on {{ book_entry.date_started }}
+        </h4>
+        <h4>
+            Finished on {{ book_entry.date_finished }}
+        </h4>
+    </h3>
 <h3>
     by - {{ book_entry.author }}
 

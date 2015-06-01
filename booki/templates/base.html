@@ -52,11 +52,12 @@
 
         {% if user.is_authenticated %}
 
-            <form class="navbar-form navbar-right" action="{% url 'logout' %}" method="POST">
+            <form class="navbar-form navbar-right" action="{% url 'logout' %}">
+            <button type="submit" class="btn btn-success">Log Out</button>
+            </form>
 
         {% csrf_token %}
 
-            <button type="submit" class="btn btn-success">Log Out</button>
         {% else %}
             <form class="navbar-form navbar-right" action="{% url 'login' %}" method="POST">
         {% csrf_token %}
@@ -94,19 +95,23 @@
         <div class="col-md-4">
        </div>
         <div class="col-md-4">
-
-        </div>
         
-        <!--<form action="/new-entry/" method="POST">-->
-        <form method="POST">
+        
+        {% if user.is_authenticated %}
+            <!--<form  method="POST">-->
+            <form method="POST">
 
-        {% csrf_token %}
+            {% csrf_token %}
 
-        {{ form_new.as_table }}
+            {{ form_new.as_p }}
 
             <input type="submit" value="New Entry" />
 
-        </form>
+            </form>
+
+        {% endif %}
+
+        </div>
 
       </div>
 
