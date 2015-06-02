@@ -13,8 +13,7 @@ with open('/home/schuyler/Class/booki/booki/booklist/api_info.txt') as f:
 
 gr_api_key = str(api_info[1]).strip()
 
-# gr_api_key = "CA3fN2yi9oAZzMEDigwEAQ"
-gr_secret = "nCgo7zG7nv6UbauQapkJDQsbTJ3kqU7jbBSTy8LnIg"
+gr_secret = str(api_info[2]).strip()
 
 def index(request):
     # list_of_entries = Book_Entry.objects.order_by('date_added')
@@ -59,8 +58,6 @@ def detail(request, book_entry_id):
         # template = loader.get_template('booklist/index.html')
         # context = RequestContext(request, { 'list_of_entries': list_of_entries, })
         api_url = "https://www.goodreads.com/search/index.xml?key=" + gr_api_key + "&q=" + urllib.quote_plus(entry.title)
-
-        print api_url
 
         # Commenting this section to deal with nonexistant network
         try:
