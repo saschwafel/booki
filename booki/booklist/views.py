@@ -78,8 +78,6 @@ def detail(request, book_entry_id):
             # cover = None
             cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
 
-        cover = None
-
         form = EntryForm(instance=entry)
 
         if request.method == 'POST':
