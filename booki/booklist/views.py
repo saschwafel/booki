@@ -60,20 +60,26 @@ def detail(request, book_entry_id):
         # context = RequestContext(request, { 'list_of_entries': list_of_entries, })
         api_url = "https://www.goodreads.com/search/index.xml?key=" + gr_api_key + "&q=" + urllib.quote_plus(entry.title)
 
-        gr_returned_html = requests.get(api_url)
-        soup = BeautifulSoup(gr_returned_html.text)
+        print api_url
 
-        try:
+        # Commenting this section to deal with nonexistant network
+        # try:
 
-            cover = soup.findAll("image_url")
+            # gr_returned_html = requests.get(api_url)
+            # soup = BeautifulSoup(gr_returned_html.text)
 
-            cover = cover[0].text
+            # cover = soup.findAll("image_url")
 
-        except AttributeError:
+            # cover = cover[0].text
 
-            cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
+        # # except AttributeError:
+        # except:
 
-        # form = EntryForm()
+            # cover = None
+            # # cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
+
+        cover = None
+
         form = EntryForm(instance=entry)
 
         if request.method == 'POST':

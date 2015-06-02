@@ -13,7 +13,7 @@
         {% if list_of_entries %}
             <ul>
             {% for entry in list_of_entries %}
-            <a href="{% url 'booklist:detail' entry.id %}">{{ entry.title }} - {{ entry.author }}</a>
+            <a href="{% url 'booklist:detail' entry.id %}">{{ entry.title }} - {{ entry.author }} : {{ entry.date_added }}</a>
             <br / >
             {% endfor %}
             </ul>

@@ -15,15 +15,22 @@
 </h1>
 
     <h3>
+
         <h4>
             Added to list on {{ book_entry.date_added }}
         </h4>
+
+        {% if book_entry.date_started %}
         <h4>
             Started on {{ book_entry.date_started }}
         </h4>
+        {% endif %}
+
+        {% if book_entry.date_finished %}
         <h4>
             Finished on {{ book_entry.date_finished }}
         </h4>
+        {% endif %}
     </h3>
 <h3>
     by - {{ book_entry.author }}
