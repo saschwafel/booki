@@ -73,12 +73,13 @@ def detail(request, book_entry_id):
 
             cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
 
-        form = EntryForm()
+        # form = EntryForm()
+        form = EntryForm(instance=entry)
 
         if request.method == 'POST':
 
-            entry = Book_Entry.objects.get(pk=book_entry_id)
 
+            # form = EntryForm(request.POST, instance=entry)
             form = EntryForm(request.POST, instance=entry)
 
             if form.is_valid():
@@ -90,7 +91,10 @@ def detail(request, book_entry_id):
 
             else:
 
-                form = EntryForm()
+                entry = Book_Entry.objects.get(pk=book_entry_id)
+
+                form = EntryForm(request.POST, instance=entry)
+                # form = EntryForm()
 
         return render(request, 'booklist/detail.html', {'book_entry' : entry, 'cover' : cover, 'api_url' : api_url, 'form_new': form})
         # response = "You are looking at Entry #%s!" 
