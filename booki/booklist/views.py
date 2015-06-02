@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Create your views here.
-with open('/home/schuyler/Class/booki/booki/booklist/api_info.txt') as f:
+with open('/home/schuyler/booki/booki/booklist/api_info.txt') as f:
     api_info = f.readlines()
 
 gr_api_key = str(api_info[1]).strip()
@@ -69,7 +69,7 @@ def detail(request, book_entry_id):
 
             cover = cover[0].text
 
-        except AttributeError:
+        except:
         # except:
 
             # cover = None

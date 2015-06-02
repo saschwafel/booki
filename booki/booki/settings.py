@@ -3,7 +3,6 @@ Django settings for booki project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
@@ -20,12 +19,12 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '8_xp%8occd1zxxhx4y^vrez!rmw60#07v+v8bwv@z=(1z07siq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['*', 'localhost']
 
 
 # Application definition
@@ -58,6 +57,24 @@ ROOT_URLCONF = 'booki.urls'
 WSGI_APPLICATION = 'booki.wsgi.application'
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+STATICFILES_FINDERS = (
+'django.contrib.staticfiles.finders.FileSystemFinder',
+'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+STATIC_ROOT = "/home/schuyler/booki/booki/booklist/static/"
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ()
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = "/home/schuyler/booki/booki/static/"
+# STATIC_URL = '/static/'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -83,6 +100,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+		"django.core.context_processors.static",
                 # 'booklist.context_processors.new_entry',
             ],
         },
@@ -103,10 +121,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-STATIC_URL = '/static/'
+
 LOGIN_REDIRECT_URL = '/'
+
