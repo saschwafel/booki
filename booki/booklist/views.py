@@ -63,20 +63,20 @@ def detail(request, book_entry_id):
         print api_url
 
         # Commenting this section to deal with nonexistant network
-        # try:
+        try:
 
-            # gr_returned_html = requests.get(api_url)
-            # soup = BeautifulSoup(gr_returned_html.text)
+            gr_returned_html = requests.get(api_url)
+            soup = BeautifulSoup(gr_returned_html.text)
 
-            # cover = soup.findAll("image_url")
+            cover = soup.findAll("image_url")
 
-            # cover = cover[0].text
+            cover = cover[0].text
 
-        # # except AttributeError:
+        except AttributeError:
         # except:
 
             # cover = None
-            # # cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
+            cover = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
 
         cover = None
 
