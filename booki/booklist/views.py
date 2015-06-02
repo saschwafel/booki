@@ -77,7 +77,9 @@ def detail(request, book_entry_id):
 
         if request.method == 'POST':
 
-            form = EntryForm(request.POST)
+            entry = Book_Entry.objects.get(pk=book_entry_id)
+
+            form = EntryForm(request.POST, instance=entry)
 
             if form.is_valid():
 
@@ -102,24 +104,20 @@ def detail(request, book_entry_id):
 
 def edit(request, book_entry_id):
     try:
-        entry = get_object_or_404(Book_Entry, pk=book_entry_id)
+        instance = get_object_or_404(Book_Entry, pk=book_entry_id)
 
-        form = EntryForm(instance=Book_Entry.objects.get(book_entry_id))
+        form = EntryForm(request.POST or None, instance=instance)
 
-        instance = entry
 
-        if request.method == 'POST':
+        if form.is_valid():
 
-            form = EntryForm(request.POST, instance=instance)
+            post = form.save(commit=False)
+            post.save()
 
-            if form.is_valid():
+            return HttpResponseRedirect('/')
 
-                post = form.save(commit=False)
-                post.save()
-
-                return HttpResponseRedirect('/')
-            else:
-                form = EntryForm(instance=instance)
+            # else:
+                # form = EntryForm(instance=instance)
 
     except Book_Entry.DoesNotExist:
 
