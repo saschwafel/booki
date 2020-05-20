@@ -23,7 +23,7 @@ django-datetime-widget==0.9.3
 duplicity==0.6.23
 gunicorn==19.3.0
 html5lib==0.999
-httplib2==0.8
+httplib2==0.18.0
 ipython==1.2.1
 lockfile==0.8
 oauthlib==0.6.1
